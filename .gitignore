@@ -27,3 +27,7 @@ dist-ssr
 server/class.db
 server/server.log
 server/__pycache__/
+*.apk
+/android/.gradle/
+/android/app/build/
+/android/local.properties

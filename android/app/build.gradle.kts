@@ -26,6 +26,11 @@ android {
 }
 
 dependencies {
+    // kotlin-stdlib 1.8+ 已合并 jdk7/jdk8 拆分包，强制对齐版本避免 Duplicate class
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
+    }
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.activity:activity:1.9.3")
     implementation("androidx.webkit:webkit:1.11.0")
