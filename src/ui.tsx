@@ -40,8 +40,8 @@ export function Page({ title, onBack, right, children }: {
   )
 }
 
-export function Card({ children, className = "", onClick }: { children: ReactNode; className?: string; onClick?: () => void }) {
-  return <div className={`card ${className}`} onClick={onClick}>{children}</div>
+export function Card({ children, className = "", onClick, style }: { children: ReactNode; className?: string; onClick?: () => void; style?: React.CSSProperties }) {
+  return <div className={`card ${className}`} onClick={onClick} style={style}>{children}</div>
 }
 
 export function Btn({ children, onClick, type = "primary", disabled, className = "" }: {

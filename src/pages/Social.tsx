@@ -1,6 +1,7 @@
 // 论坛 / 私信 / 好友
 import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { MessageCircle } from "lucide-react"
 import { api } from "../api"
 import { Btn, Card, Empty, Field, Modal, Page, TextArea, fmtTime, toast, errToast, useAuth } from "../ui"
 
@@ -23,7 +24,7 @@ export function Forum() {
             {p.content.slice(0, 50)}
           </div>
           <div style={{ color: "var(--text-2)", fontSize: 11, marginTop: 6 }}>
-            {p.author_name} · {fmtTime(p.created_at)} · 💬 {p.comment_count}
+            {p.author_name} · {fmtTime(p.created_at)} · <MessageCircle size={11} style={{ display: "inline", verticalAlign: -1 }} /> {p.comment_count}
           </div>
         </Card>
       ))}

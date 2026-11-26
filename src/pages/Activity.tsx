@@ -1,5 +1,6 @@
 // 项目报名 / 小组 / 请假 / 班费 / 晚自习报备
 import { useEffect, useState } from "react"
+import { CircleCheck } from "lucide-react"
 import { api } from "../api"
 import { Badge, Btn, Card, Empty, Field, Modal, Page, fmtTime, isTeacher, toast, errToast, useAuth } from "../ui"
 
@@ -27,7 +28,7 @@ export function Project() {
           <div style={{ color: "var(--text-2)", fontSize: 12, marginTop: 6 }}>
             已报 {p.signup_count}{p.quota ? `/${p.quota}` : ""} 人
             {p.deadline && <> · 截止 {p.deadline}</>}
-            {" · "}{p.signed ? "✅ 我已报名" : ""}
+            {" · "}{p.signed ? <span style={{ color: "var(--ok)" }}><CircleCheck size={12} style={{ display: "inline", verticalAlign: -2 }} /> 我已报名</span> : ""}
           </div>
         </Card>
       ))}

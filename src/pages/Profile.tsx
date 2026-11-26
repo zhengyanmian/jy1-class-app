@@ -1,6 +1,7 @@
 // 个人中心 + 老师的账号管理
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { SquarePen, Cake, Info } from "lucide-react"
 import { api } from "../api"
 import type { User } from "../api"
 import { Btn, Card, Field, Modal, Page, toast, errToast, useAuth } from "../ui"
@@ -31,13 +32,19 @@ export function Profile() {
 
       <Card>
         <div className="row-item" onClick={() => setEditModal(true)}>
-          <span>✏️ 补全/修改个人信息</span><span>›</span>
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <SquarePen size={16} style={{ color: "var(--primary)" }} />补全/修改个人信息
+          </span><span>›</span>
         </div>
         <div className="row-item" onClick={() => nav("/birthday")}>
-          <span>🎂 生日一览</span><span>›</span>
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <Cake size={16} style={{ color: "var(--primary)" }} />生日一览
+          </span><span>›</span>
         </div>
-        <div className="row-item" onClick={() => toast("版本 v0.1 · 计应1班班级应用")}>
-          <span>ℹ️ 关于</span><span>›</span>
+        <div className="row-item" onClick={() => toast("版本 v0.2 · 计应1班班级应用")}>
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <Info size={16} style={{ color: "var(--primary)" }} />关于
+          </span><span>›</span>
         </div>
       </Card>
 

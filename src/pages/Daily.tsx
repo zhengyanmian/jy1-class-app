@@ -1,6 +1,7 @@
 // 值日表 / 座位表 / 生日 / 通知公告
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { Paintbrush } from "lucide-react"
 import { api } from "../api"
 import { Badge, Btn, Card, Empty, Field, Modal, Page, dayName, isTeacher, toast, errToast, useAuth, fmtTime } from "../ui"
 
@@ -26,7 +27,10 @@ export function Duty() {
   return (
     <Page title="值日表">
       {todayDuty.length > 0 && (
-        <Card>🧹 今天值日：<b>{todayDuty.map(d => `${d.user_name}${d.task ? `(${d.task})` : ""}`).join("、")}</b></Card>
+        <Card style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <Paintbrush size={16} style={{ color: "var(--primary)", flexShrink: 0 }} />
+          <span>今天值日：<b>{todayDuty.map(d => `${d.user_name}${d.task ? `(${d.task})` : ""}`).join("、")}</b></span>
+        </Card>
       )}
       <Card>
         {Array.from({ length: 7 }, (_, i) => i + 1).map(day => {
@@ -168,7 +172,7 @@ export function Birthday() {
                 <b>{b.name}</b> <small style={{ color: "var(--text-2)" }}>{b.student_no}</small>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                {md === todayMD && <Badge type="warn">今天🎂</Badge>}
+                {md === todayMD && <Badge type="warn">今天生日</Badge>}
                 <span>{b.birthday}</span>
               </div>
             </div>

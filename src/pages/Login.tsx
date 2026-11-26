@@ -1,6 +1,7 @@
 // 登录页 + 首次信息确认
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { GraduationCap } from "lucide-react"
 import { api, setToken } from "../api"
 import type { User } from "../api"
 import { Btn, Field, Page, toast, errToast, useAuth } from "../ui"
@@ -27,7 +28,7 @@ export default function Login() {
   return (
     <div className="page">
       <div className="login-logo">
-        <span className="lg-emoji">🎓</span>
+        <GraduationCap size={56} strokeWidth={1.6} style={{ color: "var(--primary)" }} />
         <div className="lg-title">计应1班</div>
         <div className="lg-sub">班级应用 · 请使用老师分配的账号登录</div>
       </div>

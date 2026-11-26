@@ -104,7 +104,7 @@ body {
   flex: 1; text-align: center; padding: 8px 0 10px; color: var(--text-2);
   text-decoration: none; font-size: 11px;
 }
-.tabbar a .tab-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+.tabbar a .tab-icon { display: flex; justify-content: center; margin-bottom: 2px; }
 .tabbar a.active { color: var(--primary); }
 
 /* 首页模块宫格 */
@@ -116,7 +116,7 @@ body {
   text-align: center; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 .grid-item:active { background: #f0f4ff; }
-.grid-item .gi-icon { font-size: 26px; display: block; margin-bottom: 6px; }
+.grid-item .gi-icon { display: flex; justify-content: center; margin-bottom: 6px; color: var(--primary); }
 .grid-item .gi-name { font-size: 12px; color: var(--text); }
 
 /* 列表条目 */
@@ -163,7 +163,6 @@ body {
 .bubble-peer { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; }
 
 .login-logo { text-align: center; padding: 64px 0 28px; }
-.login-logo .lg-emoji { font-size: 56px; }
 .login-logo .lg-title { font-size: 22px; font-weight: 700; margin-top: 12px; }
 .login-logo .lg-sub { color: var(--text-2); font-size: 13px; margin-top: 6px; }
 

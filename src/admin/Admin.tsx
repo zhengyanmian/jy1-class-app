@@ -1,6 +1,11 @@
 // 管理后台：桌面侧边栏布局 + 管理页
 import { useEffect, useState } from "react"
 import { NavLink, Route, Routes, useLocation, Navigate } from "react-router-dom"
+import {
+  LayoutDashboard, UserCog, ClipboardList, Star, Megaphone, CalendarDays,
+  Paintbrush, Armchair, FileText, Coins, ClipboardCheck, MoonStar, Settings,
+  Smartphone, GraduationCap, CircleCheck,
+} from "lucide-react"
 import { api } from "../api"
 import { Btn, Card, Empty, Field, Modal, TextArea, toast, errToast, fmtTime } from "../ui"
 import Course from "../pages/Course"
@@ -9,19 +14,19 @@ import { Leave, Fund, Project, Report } from "../pages/Activity"
 import Conduct from "../pages/Conduct"
 
 const NAV = [
-  { to: "/admin", icon: "📊", name: "数据看板", end: true },
-  { to: "/admin/users", icon: "👤", name: "账号管理" },
-  { to: "/admin/homework", icon: "📝", name: "作业管理" },
-  { to: "/admin/conduct", icon: "⭐", name: "操行分管理" },
-  { to: "/admin/notice", icon: "📢", name: "通知管理" },
-  { to: "/admin/course", icon: "📅", name: "课程表" },
-  { to: "/admin/duty", icon: "🧹", name: "值日表" },
-  { to: "/admin/seat", icon: "💺", name: "座位表" },
-  { to: "/admin/leave", icon: "🧾", name: "请假审批" },
-  { to: "/admin/fund", icon: "💰", name: "班费" },
-  { to: "/admin/project", icon: "📦", name: "项目报名" },
-  { to: "/admin/report", icon: "🌙", name: "报备查询" },
-  { to: "/admin/settings", icon: "⚙️", name: "修改密码" },
+  { to: "/admin", Icon: LayoutDashboard, name: "数据看板", end: true },
+  { to: "/admin/users", Icon: UserCog, name: "账号管理" },
+  { to: "/admin/homework", Icon: ClipboardList, name: "作业管理" },
+  { to: "/admin/conduct", Icon: Star, name: "操行分管理" },
+  { to: "/admin/notice", Icon: Megaphone, name: "通知管理" },
+  { to: "/admin/course", Icon: CalendarDays, name: "课程表" },
+  { to: "/admin/duty", Icon: Paintbrush, name: "值日表" },
+  { to: "/admin/seat", Icon: Armchair, name: "座位表" },
+  { to: "/admin/leave", Icon: FileText, name: "请假审批" },
+  { to: "/admin/fund", Icon: Coins, name: "班费" },
+  { to: "/admin/project", Icon: ClipboardCheck, name: "项目报名" },
+  { to: "/admin/report", Icon: MoonStar, name: "报备查询" },
+  { to: "/admin/settings", Icon: Settings, name: "修改密码" },
 ]
 
 export function AdminShell() {
@@ -29,15 +34,19 @@ export function AdminShell() {
   return (
     <div className="admin-shell">
       <nav className="admin-side">
-        <div className="as-logo">🎓 计应1班</div>
-        {NAV.map(n => (
-          <NavLink key={n.to} to={n.to} end={n.end}
-            className={n.end ? (loc.pathname === n.to ? "active" : "")
-              : loc.pathname.startsWith(n.to) ? "active" : ""}>
-            <span>{n.icon}</span><span className="txt">{n.name}</span>
+        <div className="as-logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <GraduationCap size={18} />计应1班
+        </div>
+        {NAV.map(({ to, Icon, name, end }) => (
+          <NavLink key={to} to={to} end={end}
+            className={end ? (loc.pathname === to ? "active" : "")
+              : loc.pathname.startsWith(to) ? "active" : ""}>
+            <span><Icon size={15} strokeWidth={1.8} /></span><span className="txt">{name}</span>
           </NavLink>
         ))}
-        <NavLink to="/" className="as-quit"><span>📱</span><span className="txt">返回手机版</span></NavLink>
+        <NavLink to="/" className="as-quit">
+          <span><Smartphone size={15} strokeWidth={1.8} /></span><span className="txt">返回手机版</span>
+        </NavLink>
       </nav>
       <div className="admin-main">
         <Routes>
@@ -170,7 +179,10 @@ function UsersPage() {
         <Modal title="批量导入学生" onClose={() => setImportModal(false)}>
           {result ? (
             <>
-              <Card>✅ 成功导入 <b>{result.created.length}</b> 人{result.skipped.length > 0 && <>，跳过 <b>{result.skipped.length}</b> 条</>}</Card>
+              <Card style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <CircleCheck size={15} style={{ color: "var(--ok)", flexShrink: 0 }} />
+                <span>成功导入 <b>{result.created.length}</b> 人{result.skipped.length > 0 && <>，跳过 <b>{result.skipped.length}</b> 条</>}</span>
+              </Card>
               {result.created.length > 0 && (
                 <Card>
                   <div className="section-title">分配结果（请转发给同学）</div>

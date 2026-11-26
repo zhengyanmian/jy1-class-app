@@ -1,6 +1,11 @@
 // 首页：模块宫格 + 最新通知 + 生日提醒
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import {
+  CalendarDays, ClipboardList, Star, Megaphone, Paintbrush, Armchair, Cake,
+  ClipboardCheck, Users, FileText, Coins, MoonStar, MessagesSquare, Mail,
+  UserPlus, UserCog, LayoutDashboard,
+} from "lucide-react"
 import { api } from "../api"
 import { Card, Empty, fmtTime, isTeacher, Page, useAuth } from "../ui"
 
@@ -24,41 +29,41 @@ export default function Home() {
   const todayBd = birthdays.filter(b => b.birthday.slice(-5) === MD)
 
   const modules = [
-    { icon: "📅", name: "课程表", to: "/course" },
-    { icon: "📝", name: "作业", to: "/homework" },
-    { icon: "⭐", name: "操行分", to: "/conduct" },
-    { icon: "📢", name: "通知公告", to: "/notice" },
-    { icon: "🧹", name: "值日表", to: "/duty" },
-    { icon: "💺", name: "座位表", to: "/seat" },
-    { icon: "🎂", name: "生日", to: "/birthday" },
-    { icon: "📦", name: "项目报名", to: "/project" },
-    { icon: "👥", name: "小组", to: "/group" },
-    { icon: "🧾", name: "请假", to: "/leave" },
-    { icon: "💰", name: "班费", to: "/fund" },
-    { icon: "🌙", name: "晚自习报备", to: "/report" },
-    { icon: "💬", name: "论坛", to: "/forum" },
-    { icon: "✉️", name: "私信", to: "/dm" },
-    { icon: "🤝", name: "好友", to: "/friends" },
+    { Icon: CalendarDays, name: "课程表", to: "/course" },
+    { Icon: ClipboardList, name: "作业", to: "/homework" },
+    { Icon: Star, name: "操行分", to: "/conduct" },
+    { Icon: Megaphone, name: "通知公告", to: "/notice" },
+    { Icon: Paintbrush, name: "值日表", to: "/duty" },
+    { Icon: Armchair, name: "座位表", to: "/seat" },
+    { Icon: Cake, name: "生日", to: "/birthday" },
+    { Icon: ClipboardCheck, name: "项目报名", to: "/project" },
+    { Icon: Users, name: "小组", to: "/group" },
+    { Icon: FileText, name: "请假", to: "/leave" },
+    { Icon: Coins, name: "班费", to: "/fund" },
+    { Icon: MoonStar, name: "晚自习报备", to: "/report" },
+    { Icon: MessagesSquare, name: "论坛", to: "/forum" },
+    { Icon: Mail, name: "私信", to: "/dm" },
+    { Icon: UserPlus, name: "好友", to: "/friends" },
     ...(isTeacher(user) ? [
-      { icon: "👤", name: "账号管理", to: "/users" },
-      { icon: "🖥️", name: "管理后台", to: "/admin" },
+      { Icon: UserCog, name: "账号管理", to: "/users" },
+      { Icon: LayoutDashboard, name: "管理后台", to: "/admin" },
     ] : []),
   ]
 
   return (
     <Page title="计应1班">
       {todayBd.length > 0 && (
-        <Card className="bd-card" >
-          🎉 今天生日：<b>{todayBd.map(b => b.name).join("、")}</b>，祝生日快乐！
+        <Card>
+          今天生日：<b>{todayBd.map(b => b.name).join("、")}</b>，祝生日快乐！
         </Card>
       )}
 
       <div className="section-title">应用入口</div>
       <div className="grid">
-        {modules.map(m => (
-          <div key={m.to} className="grid-item" onClick={() => nav(m.to)}>
-            <span className="gi-icon">{m.icon}</span>
-            <span className="gi-name">{m.name}</span>
+        {modules.map(({ Icon, name, to }) => (
+          <div key={to} className="grid-item" onClick={() => nav(to)}>
+            <span className="gi-icon"><Icon size={24} strokeWidth={1.8} /></span>
+            <span className="gi-name">{name}</span>
           </div>
         ))}
       </div>

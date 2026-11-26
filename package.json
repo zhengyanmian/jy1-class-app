@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tencent-ai/workbuddy-cloud-sdk": "^0.1.4-dev.71e5d1e.202611161655",
+    "lucide-react": "^1.81.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.7"

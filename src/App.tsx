@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, Navigate, NavLink, useLocation } from "react-router-dom"
+import { Home as HomeIcon, CalendarDays, ClipboardList, MessagesSquare, User } from "lucide-react"
 import { getToken } from "./api"
 import { AuthProvider, useAuth, ToastHost } from "./ui"
 import Login, { Confirm } from "./pages/Login"
@@ -31,21 +32,21 @@ function Guard({ children }: { children: React.ReactElement }) {
 function TabBar() {
   const loc = useLocation()
   const tabs = [
-    { to: "/", icon: "🏠", name: "首页" },
-    { to: "/course", icon: "📅", name: "课表" },
-    { to: "/homework", icon: "📝", name: "作业" },
-    { to: "/forum", icon: "💬", name: "论坛" },
-    { to: "/profile", icon: "👤", name: "我的" },
+    { to: "/", Icon: HomeIcon, name: "首页" },
+    { to: "/course", Icon: CalendarDays, name: "课表" },
+    { to: "/homework", Icon: ClipboardList, name: "作业" },
+    { to: "/forum", Icon: MessagesSquare, name: "论坛" },
+    { to: "/profile", Icon: User, name: "我的" },
   ]
   if (loc.pathname.startsWith("/dm") || loc.pathname.startsWith("/login") ||
       loc.pathname.startsWith("/confirm")) return null
   return (
     <nav className="tabbar">
-      {tabs.map(t => (
-        <NavLink key={t.to} to={t.to} end={t.to === "/"}
-          className={t.to === "/" ? (loc.pathname === "/" ? "active" : "")
-            : (loc.pathname.startsWith(t.to) ? "active" : "")}>
-          <span className="tab-icon">{t.icon}</span>{t.name}
+      {tabs.map(({ to, Icon, name }) => (
+        <NavLink key={to} to={to} end={to === "/"}
+          className={to === "/" ? (loc.pathname === "/" ? "active" : "")
+            : (loc.pathname.startsWith(to) ? "active" : "")}>
+          <span className="tab-icon"><Icon size={20} strokeWidth={2} /></span>{name}
         </NavLink>
       ))}
     </nav>
