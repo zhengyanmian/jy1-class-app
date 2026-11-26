@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- 简单的学士帽图标 -->
+    <path android:fillColor="#ffffff"
+        android:pathData="M54,30 L78,42 L54,54 L30,42 Z" />
+    <path android:fillColor="#ffffff"
+        android:pathData="M38,48 L38,60 C38,66 45,70 54,70 C63,70 70,66 70,60 L70,48 L54,56 Z" />
+    <path android:fillColor="#ffffff"
+        android:pathData="M74,46 L74,58" android:strokeColor="#ffffff" android:strokeWidth="3" />
+</vector>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">计应1班</string>
+    <!-- 服务器正式地址 -->
+    <string name="server_url">http://1.14.124.213:39500</string>
+</resources>
