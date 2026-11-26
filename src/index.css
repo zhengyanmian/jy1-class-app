@@ -1,0 +1,177 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --text: #22262e;
+  --text-2: #6b7280;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --danger: #ef4444;
+  --ok: #10b981;
+  --warn: #f59e0b;
+  --line: #e5e7eb;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #e9eaee;
+  color: var(--text);
+  font-size: 15px;
+}
+.app-shell {
+  max-width: 480px; margin: 0 auto; min-height: 100%;
+  background: var(--bg); position: relative;
+}
+.page { min-height: 100%; display: flex; flex-direction: column; }
+.page-body { flex: 1; padding: 12px 12px 76px; }
+
+/* 导航栏 */
+.navbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; height: 48px; padding: 0 12px;
+  background: #fff; border-bottom: 1px solid var(--line);
+}
+.nav-back {
+  border: none; background: none; font-size: 26px; line-height: 1;
+  color: var(--text); padding: 0 8px 0 0; cursor: pointer;
+}
+.nav-title { flex: 1; font-size: 17px; font-weight: 600; text-align: center; }
+.nav-back + .nav-title { margin-left: -34px; }
+.nav-right { min-width: 34px; text-align: right; }
+
+/* 卡片 */
+.card {
+  background: var(--card); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+/* 按钮 */
+.btn {
+  border: none; border-radius: 10px; padding: 10px 16px;
+  font-size: 15px; cursor: pointer; width: 100%;
+  transition: opacity .15s;
+}
+.btn:active { opacity: .8; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-plain { background: #eef2f7; color: var(--text); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-small { width: auto; padding: 6px 14px; font-size: 13px; }
+.btn-disabled { opacity: .5; cursor: not-allowed; }
+
+/* 表单 */
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.field-label { font-size: 13px; color: var(--text-2); }
+.field-input {
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 12px; font-size: 15px; background: #fafbfc;
+  outline: none; width: 100%;
+}
+.field-input:focus { border-color: var(--primary); background: #fff; }
+.field-textarea { min-height: 90px; resize: vertical; }
+
+/* 空状态 */
+.empty { text-align: center; color: var(--text-2); padding: 48px 0; font-size: 14px; }
+
+/* 模态框 */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(0,0,0,.45);
+  z-index: 100; display: flex; align-items: flex-end; justify-content: center;
+}
+.modal {
+  background: #fff; width: 100%; max-width: 480px;
+  border-radius: 16px 16px 0 0; padding: 18px 16px 24px;
+  max-height: 80vh; overflow-y: auto;
+}
+.modal-title { font-size: 16px; font-weight: 600; margin-bottom: 14px; text-align: center; }
+
+/* Toast */
+.toast {
+  position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,32,36,.92); color: #fff; padding: 9px 20px;
+  border-radius: 8px; font-size: 14px; z-index: 200; max-width: 80vw;
+}
+
+/* 底部标签栏 */
+.tabbar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px; background: #fff;
+  border-top: 1px solid var(--line);
+  display: flex; z-index: 30;
+}
+.tabbar a {
+  flex: 1; text-align: center; padding: 8px 0 10px; color: var(--text-2);
+  text-decoration: none; font-size: 11px;
+}
+.tabbar a .tab-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+.tabbar a.active { color: var(--primary); }
+
+/* 首页模块宫格 */
+.grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.grid-item {
+  background: #fff; border-radius: 12px; padding: 14px 4px 10px;
+  text-align: center; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.grid-item:active { background: #f0f4ff; }
+.grid-item .gi-icon { font-size: 26px; display: block; margin-bottom: 6px; }
+.grid-item .gi-name { font-size: 12px; color: var(--text); }
+
+/* 列表条目 */
+.row-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.row-item:last-child { border-bottom: none; }
+
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 11px;
+}
+.badge-ok { background: #e7f8f1; color: var(--ok); }
+.badge-warn { background: #fef4e6; color: var(--warn); }
+.badge-danger { background: #fdeaea; color: var(--danger); }
+.badge-info { background: #eaf1fe; color: var(--primary); }
+
+/* 课程表 */
+.timetable { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
+.timetable th, .timetable td {
+  border: 1px solid var(--line); padding: 6px 2px; text-align: center;
+  font-size: 11px; min-width: 52px;
+}
+.timetable td.course {
+  background: #eaf1fe; color: var(--primary-dark); font-weight: 600;
+  border-radius: 4px;
+}
+
+/* 座位表 */
+.seat-grid { display: grid; gap: 6px; }
+.seat {
+  aspect-ratio: 1; border-radius: 8px; background: #eef2f7;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text-2); overflow: hidden; padding: 2px;
+  text-align: center; word-break: break-all;
+}
+.seat.occupied { background: #eaf1fe; color: var(--primary-dark); font-weight: 600; }
+
+/* 聊天 */
+.chat-wrap { display: flex; flex-direction: column; gap: 8px; }
+.bubble { max-width: 75%; padding: 9px 13px; border-radius: 14px; font-size: 14px; }
+.bubble-me { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+.bubble-peer { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; }
+
+.login-logo { text-align: center; padding: 64px 0 28px; }
+.login-logo .lg-emoji { font-size: 56px; }
+.login-logo .lg-title { font-size: 22px; font-weight: 700; margin-top: 12px; }
+.login-logo .lg-sub { color: var(--text-2); font-size: 13px; margin-top: 6px; }
+
+.stat-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.stat-card {
+  flex: 1; background: #fff; border-radius: 12px; padding: 12px; text-align: center;
+}
+.stat-card .st-num { font-size: 22px; font-weight: 700; }
+.stat-card .st-label { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+
+.section-title { font-size: 15px; font-weight: 600; margin: 4px 0 10px; }
