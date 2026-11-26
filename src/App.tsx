@@ -11,6 +11,15 @@ import { Duty, Seat, Birthday, Notice, NoticeDetail } from "./pages/Daily"
 import { Project, Group, Leave, Fund, Report } from "./pages/Activity"
 import { Forum, ForumDetail, DMList, DMChat, Friends } from "./pages/Social"
 import { Profile, UsersManage } from "./pages/Profile"
+import { AdminShell } from "./admin/Admin"
+
+function TeacherGuard({ children }: { children: React.ReactElement }) {
+  const { user } = useAuth()
+  if (!getToken()) return <Navigate to="/login" replace />
+  if (!user) return null
+  if (user.role !== "teacher") return <Navigate to="/" replace />
+  return children
+}
 
 function Guard({ children }: { children: React.ReactElement }) {
   const { user } = useAuth()
@@ -50,7 +59,16 @@ function HomeworkDetailWrapper() {
 
 function Shell() {
   const { refresh } = useAuth()
+  const loc = useLocation()
   useEffect(() => { if (getToken()) refresh() }, [])
+  // 管理后台走独立的宽屏外壳
+  if (loc.pathname.startsWith("/admin")) {
+    return (
+      <Routes>
+        <Route path="/admin/*" element={<TeacherGuard><AdminShell /></TeacherGuard>} />
+      </Routes>
+    )
+  }
   return (
     <div className="app-shell">
       <Routes>
@@ -84,7 +102,6 @@ function Shell() {
     </div>
   )
 }
-
 export default function App() {
   return (
     <AuthProvider>

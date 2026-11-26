@@ -175,3 +175,46 @@ body {
 .stat-card .st-label { font-size: 12px; color: var(--text-2); margin-top: 2px; }
 
 .section-title { font-size: 15px; font-weight: 600; margin: 4px 0 10px; }
+
+/* ========== 管理后台（桌面宽屏） ========== */
+.admin-shell { display: flex; min-height: 100vh; background: var(--bg); }
+.admin-side {
+  width: 200px; flex-shrink: 0; background: #1f2430; color: #cfd3dc;
+  display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;
+}
+.admin-side .as-logo { padding: 18px 16px; font-size: 16px; font-weight: 700; color: #fff;
+  border-bottom: 1px solid #2c323f; }
+.admin-side a {
+  display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+  color: #9aa1ae; text-decoration: none; font-size: 14px;
+}
+.admin-side a:hover { background: #2c323f; color: #fff; }
+.admin-side a.active { background: var(--primary); color: #fff; }
+.admin-side .as-quit { margin-top: auto; border-top: 1px solid #2c323f; }
+.admin-main { flex: 1; min-width: 0; }
+.admin-topbar {
+  height: 52px; background: #fff; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; padding: 0 24px; gap: 12px;
+}
+.admin-topbar .at-title { font-size: 16px; font-weight: 600; }
+.admin-content { padding: 20px 24px; }
+.admin-content .page, .admin-content .page-body { padding: 0; }
+.admin-content .navbar { display: none; }
+
+.table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.table th, .table td { padding: 10px 14px; border-bottom: 1px solid var(--line);
+  text-align: left; font-size: 14px; }
+.table th { background: #f8f9fb; color: var(--text-2); font-weight: 500; font-size: 13px; }
+.table tr:last-child td { border-bottom: none; }
+
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.dash-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.dash-card .dc-num { font-size: 26px; font-weight: 700; }
+.dash-card .dc-label { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+
+@media (max-width: 760px) {
+  .admin-side { width: 56px; }
+  .admin-side .as-logo, .admin-side a span.txt { display: none; }
+  .admin-side a { justify-content: center; }
+}

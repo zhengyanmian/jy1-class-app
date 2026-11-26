@@ -39,7 +39,10 @@ export default function Home() {
     { icon: "💬", name: "论坛", to: "/forum" },
     { icon: "✉️", name: "私信", to: "/dm" },
     { icon: "🤝", name: "好友", to: "/friends" },
-    ...(isTeacher(user) ? [{ icon: "👤", name: "账号管理", to: "/users" }] : []),
+    ...(isTeacher(user) ? [
+      { icon: "👤", name: "账号管理", to: "/users" },
+      { icon: "🖥️", name: "管理后台", to: "/admin" },
+    ] : []),
   ]
 
   return (

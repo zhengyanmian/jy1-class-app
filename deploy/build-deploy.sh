@@ -13,9 +13,10 @@ echo "==> [1/5] 构建前端"
 npm run build
 
 echo "==> [2/5] 打包上传"
-tar czf /tmp/classapp.tar.gz -C . server/app.py server/db.py server/auth.py \
+tar czf /tmp/classapp.tar.gz -C . dist \
+    server/app.py server/db.py server/auth.py \
     server/routes_main.py server/routes_extra.py server/routes_social.py \
-    server/requirements.txt dist
+    server/routes_admin.py server/requirements.txt
 scp -q /tmp/classapp.tar.gz "$HOST:/tmp/"
 
 echo "==> [3/5] 服务器安装依赖"

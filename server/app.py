@@ -7,6 +7,7 @@ from auth import auth_bp
 from routes_main import api as api_main
 from routes_extra import api as api_extra
 from routes_social import api as api_social
+from routes_admin import admin_bp
 
 app = Flask(__name__, static_folder="../dist", static_url_path="")
 CORS(app, supports_credentials=True)
@@ -15,6 +16,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(api_main)
 app.register_blueprint(api_extra)
 app.register_blueprint(api_social)
+app.register_blueprint(admin_bp)
 
 
 @app.errorhandler(404)
