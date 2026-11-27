@@ -1,6 +1,7 @@
 // 移动端 UI 组件库
 import React, { createContext, useContext, useEffect, useState, useCallback } from "react"
 import type { ReactNode } from "react"
+import { createPortal } from "react-dom"
 import { api, clearToken } from "./api"
 import type { User } from "./api"
 
@@ -78,13 +79,15 @@ export function TextArea({ label, ...props }: { label: string } & React.Textarea
 }
 
 export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
-  return (
+  // Portal 渲染到 body：脱离 .page 的层叠上下文，保证弹窗永远在底部标签栏之上
+  return createPortal(
     <div className="modal-mask" onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         <div className="modal-title">{title}</div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
