@@ -1,6 +1,6 @@
 // 论坛 / 私信 / 好友
 import { useEffect, useRef, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, NavLink } from "react-router-dom"
 import { MessageCircle } from "lucide-react"
 import { api } from "../api"
 import { Btn, Card, Empty, Field, Modal, Page, TextArea, fmtTime, toast, errToast, useAuth } from "../ui"
@@ -13,9 +13,14 @@ export function Forum() {
   const load = () => api.get("/api/posts").then(r => setPosts(r.posts)).catch(errToast)
   useEffect(() => { load() }, [])
   return (
-    <Page title="班级论坛" right={
+    <Page title="交流" right={
       <button className="btn btn-small btn-primary" onClick={() => setAddModal(true)}>发帖</button>
     }>
+      <div className="subnav">
+        <NavLink to="/forum" end className={({ isActive }) => `subnav-item ${isActive ? "on" : ""}`}>论坛</NavLink>
+        <NavLink to="/dm" className={({ isActive }) => `subnav-item ${isActive ? "on" : ""}`}>私信</NavLink>
+        <NavLink to="/friends" className={({ isActive }) => `subnav-item ${isActive ? "on" : ""}`}>好友</NavLink>
+      </div>
       {posts.length === 0 && <Empty text="还没有帖子，来发第一帖" />}
       {posts.map(p => (
         <Card key={p.id} onClick={() => nav(`/forum/${p.id}`)}>

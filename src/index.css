@@ -317,3 +317,70 @@ body {
 .hero-title { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
 .hero-sub { font-size: 13px; opacity: .9; margin-top: 6px; }
 .hero-date { font-size: 12px; opacity: .75; margin-top: 10px; }
+
+/* ========== 原站信息架构复刻：浮岛标签栏 / 今日课程卡 / 子导航 ========== */
+.tabbar {
+  bottom: 10px; border-radius: 20px;
+  width: calc(100% - 28px); max-width: 452px;
+  background: rgba(255,255,255,.95);
+  border: 1px solid rgba(47,107,255,.08);
+  box-shadow: 0 8px 28px rgba(21,43,84,.14);
+  overflow: hidden;
+}
+.tabbar a { padding: 7px 0 8px; position: relative; }
+.tabbar a.active::before {
+  content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+  width: 56px; height: 34px; border-radius: 999px;
+  background: rgba(47,107,255,.1);
+}
+.tabbar a .tab-icon, .tabbar a .tab-icon svg { position: relative; z-index: 1; }
+.tabbar a span:not(.tab-icon) { position: relative; z-index: 1; }
+
+/* 今日课程卡 */
+.today-card {
+  background: rgba(255,255,255,.95); border-radius: var(--radius);
+  padding: 14px; margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(21,43,84,.05);
+  animation: card-in .24s ease both;
+}
+.today-head {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600; color: var(--primary-dark);
+  padding-bottom: 10px; border-bottom: 1px solid rgba(47,107,255,.08);
+}
+.today-count { margin-left: auto; font-size: 12px; font-weight: 500;
+  color: var(--text-2); background: rgba(47,107,255,.08);
+  padding: 2px 10px; border-radius: 999px; }
+.today-empty { color: var(--text-2); font-size: 13px; padding: 14px 0 4px; text-align: center; }
+.today-list { display: flex; flex-direction: column; }
+.today-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 10px; font-size: 13px; margin-top: 4px;
+}
+.today-item.on { background: rgba(47,107,255,.1); }
+.today-period { font-size: 11px; color: var(--primary); font-weight: 600;
+  background: rgba(47,107,255,.08); padding: 2px 8px; border-radius: 6px; }
+.today-item.on .today-period { background: var(--primary); color: #fff; }
+.today-name { font-weight: 600; flex: 1; }
+.today-room { color: var(--text-2); font-size: 12px; }
+
+/* 交流子导航 */
+.subnav {
+  display: flex; gap: 8px; margin-bottom: 12px;
+  background: rgba(47,107,255,.06); border-radius: 12px; padding: 4px;
+}
+.subnav-item {
+  flex: 1; text-align: center; padding: 8px 0; font-size: 14px;
+  color: var(--text-2); text-decoration: none; border-radius: 9px;
+  font-weight: 500;
+}
+.subnav-item.on { background: #fff; color: var(--primary); font-weight: 600;
+  box-shadow: 0 1px 6px rgba(21,43,84,.08); }
+
+/* 头像 / 辅助字 */
+.avatar {
+  width: 38px; height: 38px; border-radius: 50%; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 600; flex-shrink: 0;
+}
+.muted { color: var(--text-2); font-size: 12px; }

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, Navigate, NavLink, useLocation } from "react-router-dom"
-import { Home as HomeIcon, CalendarDays, ClipboardList, MessagesSquare, User } from "lucide-react"
+import { Home as HomeIcon, LayoutGrid, MessagesSquare, Users, User } from "lucide-react"
 import { getToken } from "./api"
 import { AuthProvider, useAuth, ToastHost } from "./ui"
 import Login, { Confirm } from "./pages/Login"
@@ -12,6 +12,8 @@ import { Duty, Seat, Birthday, Notice, NoticeDetail } from "./pages/Daily"
 import { Project, Group, Leave, Fund, Report } from "./pages/Activity"
 import { Forum, ForumDetail, DMList, DMChat, Friends } from "./pages/Social"
 import { Profile, UsersManage } from "./pages/Profile"
+import Apps from "./pages/Apps"
+import Classmates from "./pages/Classmates"
 import { AdminShell } from "./admin/Admin"
 
 function TeacherGuard({ children }: { children: React.ReactElement }) {
@@ -33,9 +35,9 @@ function TabBar() {
   const loc = useLocation()
   const tabs = [
     { to: "/", Icon: HomeIcon, name: "首页" },
-    { to: "/course", Icon: CalendarDays, name: "课表" },
-    { to: "/homework", Icon: ClipboardList, name: "作业" },
-    { to: "/forum", Icon: MessagesSquare, name: "论坛" },
+    { to: "/apps", Icon: LayoutGrid, name: "功能" },
+    { to: "/forum", Icon: MessagesSquare, name: "交流" },
+    { to: "/classmates", Icon: Users, name: "同学" },
     { to: "/profile", Icon: User, name: "我的" },
   ]
   if (loc.pathname.startsWith("/dm") || loc.pathname.startsWith("/login") ||
@@ -76,6 +78,8 @@ function Shell() {
         <Route path="/login" element={<Login />} />
         <Route path="/confirm" element={<Guard><Confirm /></Guard>} />
         <Route path="/" element={<Guard><Home /></Guard>} />
+        <Route path="/apps" element={<Guard><Apps /></Guard>} />
+        <Route path="/classmates" element={<Guard><Classmates /></Guard>} />
         <Route path="/course" element={<Guard><Course /></Guard>} />
         <Route path="/homework" element={<Guard><Homework /></Guard>} />
         <Route path="/homework/:id" element={<Guard><HomeworkDetailWrapper /></Guard>} />
