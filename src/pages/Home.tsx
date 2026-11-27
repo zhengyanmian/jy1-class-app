@@ -52,11 +52,16 @@ export default function Home() {
 
   return (
     <Page title="计应1班">
-      {todayBd.length > 0 && (
-        <Card>
-          今天生日：<b>{todayBd.map(b => b.name).join("、")}</b>，祝生日快乐！
-        </Card>
-      )}
+      <div className="hero">
+        <div className="hero-title">计应1班 · 应用入口</div>
+        <div className="hero-sub">
+          {user?.name ? `${user.name}，` : ""}欢迎回来
+          {todayBd.length > 0 && <>，今天{todayBd.map(b => b.name).join("、")}过生日，祝生日快乐！</>}
+        </div>
+        <div className="hero-date">
+          {TODAY.getFullYear()} 年 {TODAY.getMonth() + 1} 月 {TODAY.getDate()} 日 · 周{"日一二三四五六"[TODAY.getDay()]}
+        </div>
+      </div>
 
       <div className="section-title">应用入口</div>
       <div className="grid">
