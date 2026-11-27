@@ -19,6 +19,18 @@ app.register_blueprint(api_social)
 app.register_blueprint(admin_bp)
 
 
+@app.after_request
+def add_cache_headers(resp):
+    """入口页彻底禁缓存（WebView 对 no-cache 执行不可靠，必须 no-store）；
+    带 hash 的静态资源允许长缓存"""
+    if resp.mimetype == "text/html":
+        resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
+        resp.headers["Pragma"] = "no-cache"
+    elif resp.mimetype in ("application/javascript", "text/javascript", "text/css"):
+        resp.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    return resp
+
+
 @app.errorhandler(404)
 def not_found(_):
     # SPA 兜底：非 /api 路径返回前端入口

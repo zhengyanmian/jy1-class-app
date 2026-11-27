@@ -13,6 +13,7 @@
   --ok: #10b981;
   --warn: #ffa202;
   --radius: 16px;
+  --tabbar-h: 56px;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
           "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -81,7 +82,7 @@ body {
 }
 
 .page { min-height: 100%; display: flex; flex-direction: column; position: relative; z-index: 1; }
-.page-body { flex: 1; padding: 12px 14px 108px; }
+.page-body { flex: 1; padding: 12px 14px calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 20px); }
 
 /* 导航栏：白→淡蓝渐变（原站参数） */
 .navbar {

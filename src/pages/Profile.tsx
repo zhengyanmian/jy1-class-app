@@ -41,9 +41,9 @@ export function Profile() {
             <Cake size={16} style={{ color: "var(--primary)" }} />生日一览
           </span><span>›</span>
         </div>
-        <div className="row-item" onClick={() => toast("版本 v0.2 · 计应1班班级应用")}>
+        <div className="row-item" onClick={() => toast("版本 v0.2.5 · 计应1班班级应用")}>
           <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Info size={16} style={{ color: "var(--primary)" }} />关于
+            <Info size={16} style={{ color: "var(--primary)" }} />关于（v0.2.5）
           </span><span>›</span>
         </div>
       </Card>
