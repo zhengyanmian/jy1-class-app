@@ -176,7 +176,7 @@ export function DMChat() {
 
   return (
     <Page title={peerName || "私信"} onBack={() => nav(-1)}>
-      <div className="chat-wrap" style={{ paddingBottom: 70 }}>
+      <div className="chat-wrap" style={{ paddingBottom: 96 }}>
         {messages.map(m => (
           <div key={m.id} className={`bubble ${m.from_id === Number(peerId) ? "bubble-peer" : "bubble-me"}`}>
             {m.content}

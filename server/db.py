@@ -110,6 +110,7 @@ CREATE TABLE IF NOT EXISTS leaves (
   start_time TEXT NOT NULL,
   end_time TEXT NOT NULL,
   reason TEXT DEFAULT '',
+  type TEXT DEFAULT '事假',                   -- 病假 / 事假 / 离校
   status TEXT DEFAULT 'pending',              -- pending / approved / rejected
   reviewed_by INTEGER,
   created_at TEXT DEFAULT (datetime('now','localtime'))
@@ -184,8 +185,16 @@ def get_db() -> sqlite3.Connection:
     return conn
 
 
+def _migrate(conn: sqlite3.Connection):
+    """存量库升级：leaves 增加 type 列（病假/事假/离校）"""
+    cols = {r["name"] for r in conn.execute("PRAGMA table_info(leaves)").fetchall()}
+    if "type" not in cols:
+        conn.execute("ALTER TABLE leaves ADD COLUMN type TEXT DEFAULT '事假'")
+
+
 def init_db():
     conn = get_db()
     conn.executescript(SCHEMA)
+    _migrate(conn)
     conn.commit()
     conn.close()

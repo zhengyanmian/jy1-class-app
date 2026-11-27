@@ -221,7 +221,11 @@ export function Leave() {
       {list.map(l => (
         <Card key={l.id}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <b>{l.user_name}</b>{badge(l.status)}
+            <b>{l.user_name}</b>
+            <span style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <Badge type="info">{l.type || "事假"}</Badge>
+              {badge(l.status)}
+            </span>
           </div>
           <div style={{ marginTop: 6 }}>{l.start_time} ~ {l.end_time}</div>
           <div style={{ color: "var(--text-2)", fontSize: 13, marginTop: 4 }}>事由：{l.reason}</div>
@@ -246,16 +250,25 @@ function LeaveForm({ onDone }: { onDone: () => void }) {
   const [startTime, setStart] = useState("")
   const [endTime, setEnd] = useState("")
   const [reason, setReason] = useState("")
+  const [type, setType] = useState("事假")
   async function save() {
     if (!startTime || !endTime) return toast("请选择起止时间")
-    try { await api.post("/api/leaves", { startTime, endTime, reason }); onDone() }
+    try { await api.post("/api/leaves", { startTime, endTime, reason, type }); onDone() }
     catch (e) { errToast(e) }
   }
   return (
     <>
+      <div className="field">
+        <span className="field-label">请假类型</span>
+        <select className="field-input" value={type} onChange={e => setType(e.target.value)}>
+          <option value="病假">病假</option>
+          <option value="事假">事假</option>
+          <option value="离校">离校</option>
+        </select>
+      </div>
       <Field label="开始时间" type="datetime-local" value={startTime} onChange={e => setStart(e.target.value)} />
       <Field label="结束时间" type="datetime-local" value={endTime} onChange={e => setEnd(e.target.value)} />
-      <Field label="请假事由" value={reason} onChange={e => setReason(e.target.value)} />
+      <Field label={type === "离校" ? "离校事由及去向" : "请假事由"} value={reason} onChange={e => setReason(e.target.value)} />
       <Btn onClick={save}>提交申请</Btn>
     </>
   )

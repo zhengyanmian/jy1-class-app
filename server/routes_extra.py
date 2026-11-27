@@ -163,11 +163,14 @@ def leave_list():
 @require_auth
 def leave_apply():
     data = request.get_json(force=True)
+    leave_type = data.get("type")
+    if leave_type not in ("病假", "事假", "离校"):
+        leave_type = "事假"
     db = get_db()
     cur = db.execute(
-        "INSERT INTO leaves (user_id,start_time,end_time,reason) VALUES (?,?,?,?)",
+        "INSERT INTO leaves (user_id,start_time,end_time,reason,type) VALUES (?,?,?,?,?)",
         (g.user["id"], data.get("startTime") or "", data.get("endTime") or "",
-         data.get("reason") or ""))
+         data.get("reason") or "", leave_type))
     db.commit()
     return jsonify(id=cur.lastrowid)
 
